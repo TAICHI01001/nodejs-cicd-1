@@ -17,7 +17,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-
+      
 name: Checking out ${{ github.ref }} ${{ github.sha }}
       uses: actions/checkout@v3
 name: Setup Node.js ${{ matrix.nodeversion }} on ${{ matrix.os }}
@@ -33,12 +33,14 @@ run: pnpm install
 name: Running Jest tests with Node.js ${{ matrix.nodeversion }} on ${{ matrix.os }}
 run: pnpm test
 
+
+
   package:
     name: Build and publish Docker image
     needs: test
     runs-on: ubuntu-latest
     steps:
-
+      
 name: Checking out ${{ github.ref }} ${{ github.sha }}
       uses: actions/checkout@v3
 name: Set up QEMU
@@ -53,7 +55,7 @@ with:
 name: Build and push
 uses: docker/build-push-action@v4
 with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker:latest
+  context: .
+  file: ./Dockerfile
+  push: true
+  tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker:latest
